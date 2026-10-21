@@ -416,7 +416,7 @@ function BlockView({
             <div className={block.priceSide === "left" ? "line price-left" : "line"}>
               <h3 className="name">{item.name}</h3>
               <span className="price">
-                <span className="grams">{item.grams}г</span>
+                <span className="grams">{item.grams}{item.unit ?? "г"}</span>
                 <span className="slash">/</span>
                 <span className="rub">{item.price}₽</span>
               </span>

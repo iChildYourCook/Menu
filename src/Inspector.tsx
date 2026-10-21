@@ -37,7 +37,7 @@ export function Inspector({ editor }: { editor: Editor }) {
                 >
                   <span>{item.name}</span>
                   <small>
-                    {item.grams}г / {item.price}₽
+                    {item.grams}{item.unit ?? "г"} / {item.price}₽
                   </small>
                 </button>
               </li>
@@ -328,7 +328,7 @@ function DishFields({ editor, doc, dishId }: { editor: Editor; doc: MenuDoc; dis
       </label>
       <div className="grid-2">
         <label className="field">
-          Граммы
+          Вес / объём
           <input
             type="number"
             min={0}
@@ -354,6 +354,18 @@ function DishFields({ editor, doc, dishId }: { editor: Editor; doc: MenuDoc; dis
           />
         </label>
       </div>
+      <label className="field">
+        Единица измерения
+        <select
+          value={dish.unit ?? "г"}
+          onChange={(event) => editor.changeDish(dish.id, {
+            unit: event.target.value === "мл" ? "мл" : "г",
+          }, "commit")}
+        >
+          <option value="г">Граммы (г)</option>
+          <option value="мл">Миллилитры (мл)</option>
+        </select>
+      </label>
       <label className="field">
         Состав
         <textarea

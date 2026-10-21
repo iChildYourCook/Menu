@@ -17,6 +17,7 @@ export type Dish = {
   id: string;
   name: string;
   grams: number;
+  unit?: "г" | "мл";
   price: number;
   details: string;
 };
